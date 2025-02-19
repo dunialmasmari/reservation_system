@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Form group styles
+.form-group {
+    @apply relative flex flex-col gap-2;
+
+    input::placeholder {
+        @apply text-gray-400;
+    }
+
+    label {
+        font-family: inherit;
+    }
+
+    .form-input {
+        @apply outline-none border bg-gray-50 border-gray-200 text-gray-900 rounded-lg;
+        min-height: 54px;
+        padding: 0.438rem 1rem;
+
+        .add-slot {
+            height: 38px;
+            width: 38px;
+            @apply bg-white border border-gray-200 rounded-lg px-2 py-1;
+        }
+
+        input[type="time"] {
+            min-height: 38px;
+            flex: 1;
+            @apply outline-none bg-white border border-gray-200 text-gray-900 rounded-lg px-2;
+        }
+
+        @media screen and (max-width: 768px) {
+            flex-wrap: wrap;
+
+            input[type="time"] {
+                font-size: 14px;
+                flex: 1;
+
+                &::-webkit-calendar-picker-indicator {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .v-select {
+        .vs__actions {
+            padding: 0 !important;
+
+            svg {
+                font-size: 14px;
+
+                path {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .vs__selected {
+            @apply mt-0 text-gray-900 p-0 mx-0;
+        }
+
+        .vs__search {
+            margin-top: 0;
+        }
+
+        &:not(.vs--single) .vs__selected {
+            @apply text-gray-900 bg-white border border-primary text-sm px-2 py-2 mr-2 my-1 rounded-md;
+        }
+
+        &.vs--single .vs__selected {
+            @apply min-h-full text-gray-900 bg-white border border-primary text-sm px-2 mr-2 my-0 rounded-md;
+        }
+
+        .vs__dropdown-option {
+            @apply text-gray-500 mx-0;
+        }
+
+        .vs__dropdown-option--selected:not(.vs__dropdown-option--disabled),
+        .vs__dropdown-option--highlight:not(.vs__dropdown-option--disabled),
+        .vs__dropdown-option:hover:not(.vs__dropdown-option--disabled) {
+            @apply bg-gray-50 text-primary;
+        }
+
+        .vs__dropdown-option--disabled {
+            @apply bg-transparent text-gray-400;
+        }
+    }
+
+    .vs__dropdown-toggle {
+        @apply bg-gray-50 border-gray-200 text-gray-400 rounded-lg;
+        min-height: 54px;
+        height: auto;
+        padding: 0.438rem 1rem;
+
+        .vs__deselect {
+            display: none;
+        }
+    }
+}
+
+// Button loading state
+.is-loading {
+    pointer-events: none;
+
+    .btn-text {
+        display: none;
+    }
+
+    .btn-spinner {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        vertical-align: -0.125em;
+        border: 0.25em solid;
+        border-right: 0.25em solid transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner-border 0.75s linear infinite;
+        animation: spinner-border 0.75s linear infinite;
+    }
+}
+
+// Spinner animation for Safari
+@-webkit-keyframes spinner-border {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+// Spinner animation for other browsers
+@keyframes spinner-border {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// Responsive table styles
+@media (max-width: 640px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        background-color: transparent !important;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody {
+        display: block;
+        background-color: transparent !important;
+        @apply bg-transparent;
+    }
+
+    tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border-bottom: none;
+        border-top: none;
+        @apply bg-white shadow-sm rounded-lg;
+    }
+
+    tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.7rem;
+        border-bottom: 1px solid #e5e7eb;
+        @apply text-sm font-medium;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    tbody td:not(.no-data)::before {
+        content: attr(data-label);
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #6b7280;
+        @apply text-xs font-medium text-gray-500 uppercase;
+    }
+}
+
+// Button styles
+.btn {
+    @apply px-4 py-2 rounded-md font-medium outline-none h-[48px];
+}
+
+.btn-primary {
+    @apply btn border border-primary bg-primary text-white text-sm sm:text-base hover:bg-primary-700 focus:ring-primary-800;
+}
+.btn-primary:disabled {
+    @apply btn border border-primary-100 bg-primary-100 text-white text-sm sm:text-base cursor-not-allowed;
+
+}
+.btn-outline-primary {
+    @apply btn border border-primary text-primary text-sm sm:text-base hover:bg-primary-50 focus:ring-primary-50;
+}
+
+.btn-gray-50 {
+    @apply btn bg-gray-50 border border-gray-200 text-gray-700 text-sm sm:text-base hover:bg-gray-100 focus:ring-gray-100;
+}
+
+.btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-700 focus:ring-red-800;
+}
+
+.btn-outline-danger {
+    @apply btn border border-red-600 text-red-600 text-sm sm:text-base hover:bg-red-50 focus:ring-red-50;
+}
+
+.btn-secondary {
+    @apply btn bg-gray-200 text-gray-700 hover:bg-gray-300 focus:ring-gray-800;
+}
